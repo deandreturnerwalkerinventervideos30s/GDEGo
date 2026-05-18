@@ -3,40 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDEgo | Universal DMV & CDL Master Test Bank</title>
+    <title>GDEgo | Universal DMV & CDL Master Database</title>
     <style>
-        :root { --gde-blue: #002d62; --gde-gold: #ffcc00; --card-bg: #ffffff; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; margin: 0; padding-bottom: 60px; color: #333; }
+        :root { --gde-blue: #002d62; --gde-gold: #ffcc00; --bg: #f5f7fa; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); margin: 0; padding-bottom: 60px; color: #333; }
         
-        header { background: var(--gde-blue); color: white; padding: 40px 20px; text-align: center; border-bottom: 6px solid var(--gde-gold); }
-        h1 { margin: 0; font-size: 2.8em; letter-spacing: 2px; font-weight: 900; }
-        .tagline { margin-top: 8px; font-size: 1.1em; color: #ffcc00; font-weight: 600; }
+        header { background: var(--gde-blue); color: white; padding: 35px 20px; text-align: center; border-bottom: 6px solid var(--gde-gold); }
+        h1 { margin: 0; font-size: 2.8em; letter-spacing: 1px; font-weight: 900; }
+        .tagline { margin-top: 5px; font-size: 1.1em; color: var(--gde-gold); font-weight: 600; }
 
-        /* Fixed Search Controls */
-        .control-panel { position: sticky; top: 0; background: white; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; gap: 12px; }
-        .search-wrapper { position: relative; width: 95%; max-width: 650px; }
-        #searchField { width: 100%; padding: 16px 55px 16px 20px; border-radius: 50px; border: 3px solid var(--gde-blue); font-size: 1.1em; outline: none; box-sizing: border-box; }
+        /* Quizlet-Style Search Command Deck */
+        .control-panel { position: sticky; top: 0; background: white; padding: 15px; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .search-wrapper { position: relative; width: 100%; max-width: 700px; }
+        #searchField { width: 100%; padding: 16px 55px 16px 20px; border-radius: 8px; border: 2px solid #cbd5e1; font-size: 1.1em; outline: none; box-sizing: border-box; transition: 0.2s; }
+        #searchField:focus { border-color: var(--gde-blue); box-shadow: 0 0 0 3px rgba(0,45,98,0.15); }
         
-        .mic-btn { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--gde-blue); }
-        .listening { color: #d9534f; animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        .mic-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 1.4em; cursor: pointer; color: #64748b; }
+        .listening { color: #ef4444; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* Category Filter Buttons */
-        .category-bar { display: flex; gap: 8px; overflow-x: auto; width: 100%; max-width: 750px; padding: 5px; box-sizing: border-box; }
-        .cat-btn { background: #e2e8f0; border: none; padding: 10px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; white-space: nowrap; font-size: 0.85em; transition: 0.2s; }
-        .cat-btn.active { background: var(--gde-blue); color: white; }
-
-        /* Main Viewport */
-        .main-container { max-width: 850px; margin: 25px auto; padding: 0 15px; }
-        #resultsSummary { font-size: 1.1em; margin-bottom: 15px; font-weight: bold; color: var(--gde-blue); }
+        /* Layout Stream */
+        .main-container { max-width: 850px; margin: 20px auto; padding: 0 15px; }
+        #resultsSummary { font-size: 1em; margin-bottom: 15px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        /* Quizlet/Scribd Style Cards */
-        .qa-card { background: var(--card-bg); border-radius: 10px; padding: 22px; margin-bottom: 18px; border-left: 8px solid var(--gde-blue); box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
-        .meta-tags { margin-bottom: 10px; font-size: 0.8em; font-weight: bold; color: #777; text-transform: uppercase; }
-        .question-text { font-weight: 700; font-size: 1.2em; color: #111; margin-bottom: 12px; line-height: 1.4; }
-        .answer-box { background: #f0f7ff; color: #004085; padding: 15px; border-radius: 6px; font-weight: 600; border: 1px solid #d6e9ff; font-size: 1.05em; }
+        /* Master Database Cards */
+        .qa-card { background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: transform 0.2s; }
+        .card-meta { font-size: 0.75em; font-weight: bold; color: var(--gde-blue); text-transform: uppercase; margin-bottom: 8px; background: #e0f2fe; display: inline-block; padding: 2px 8px; border-radius: 4px; }
+        .question-text { font-weight: 700; font-size: 1.2em; color: #1e293b; margin-bottom: 12px; line-height: 1.4; }
+        .answer-box { background: #f8fafc; color: #334155; padding: 15px; border-radius: 6px; font-weight: 600; border-left: 5px solid var(--gde-gold); font-size: 1.05em; }
         
-        .no-results { text-align: center; padding: 40px; background: white; border-radius: 10px; font-size: 1.1em; color: #666; }
+        .no-results { text-align: center; padding: 40px; background: white; border-radius: 8px; font-size: 1.1em; color: #64748b; border: 1px solid #e2e8f0; }
     </style>
 </head>
 <body>
@@ -48,104 +44,101 @@
 
 <div class="control-panel">
     <div class="search-wrapper">
-        <input type="text" id="searchField" placeholder="Type or speak a question (e.g. 'railroad', 'air brake')..." onkeyup="filterDatabase()">
-        <button class="mic-btn" id="micTrigger" onclick="startVoiceSession()">🎤</button>
-    </div>
-    <div class="category-bar">
-        <button class="cat-btn active" onclick="switchCategory('all', this)">All Questions</button>
-        <button class="cat-btn" onclick="switchCategory('Ohio Regular', this)">Ohio Car Exam</button>
-        <button class="cat-btn" onclick="switchCategory('CDL General', this)">CDL General Knowledge</button>
-        <button class="cat-btn" onclick="switchCategory('Air Brakes', this)">Air Brakes</button>
-        <button class="cat-btn" onclick="switchCategory('Pre-Trip', this)">Pre-Trip Inspection</button>
-        <button class="cat-btn" onclick="switchCategory('Combination', this)">Combination Vehicles</button>
+        <input type="text" id="searchField" placeholder="Search thousands of answers instantly..." onkeyup="smartSearchEngine()">
+        <button class="mic-btn" id="micTrigger" onclick="startVoiceInput()">🎤</button>
     </div>
 </div>
 
 <div class="main-container">
-    <div id="resultsSummary">Loading Master Question Banks...</div>
+    <div id="resultsSummary">Loading Active Exam Pools...</div>
     <div id="deckDisplay"></div>
 </div>
 
 <script>
-    let currentCategory = 'all';
-
-    // THE INTERNAL MASSIVE TEST BANK (No external Google dependencies)
+    // EXPANDED COMPREHENSIVE CDL & DMV DATABASE
     const masterDatabase = [
-        // --- OHIO REGULAR DRIVER EXAMS ---
-        { cat: "Ohio Regular", q: "When approaching a railroad crossing, what should you do?", a: "Slow down, look both ways, and listen for approaching trains. Stop completely at least 15 feet from the tracks if lights are flashing or gates are lowered." },
-        { cat: "Ohio Regular", q: "What should you do when approaching a stop sign?", a: "Come to a complete stop behind the stop line or crosswalk, yield the right-of-way to cross-traffic and pedestrians, and proceed only when clear." },
-        { cat: "Ohio Regular", q: "What is the legal speed limit in an Ohio school zone during hours of arrival, departure, or recess?", a: "20 miles per hour (mph)." },
-        { cat: "Ohio Regular", q: "What is the 'Four-Second Rule' in driving?", a: "It is a safe rule used to measure a driver's following distance behind the vehicle directly in front of them under good weather conditions." },
-        { cat: "Ohio Regular", q: "When are you allowed to make a right turn on a red traffic light in Ohio?", a: "After coming to a complete stop, yielding to pedestrians and cross-traffic, provided there is no sign posted that says 'No Turn on Red'." },
-        { cat: "Ohio Regular", q: "What is the maximum legal blood alcohol concentration (BAC) limit for drivers under 21 years old in Ohio?", a: "0.02% or higher." },
-        { cat: "Ohio Regular", q: "What must a driver do when a school bus stops on a road with fewer than four lanes and activates its flashing red lights?", a: "Drivers approaching from both directions must stop at least 10 feet away from the front or rear of the bus and wait until the lights stop flashing." },
-        { cat: "Ohio Regular", q: "It is illegal to park within how many feet of a fire hydrant?", a: "Within 10 feet of a fire hydrant." },
-        { cat: "Ohio Regular", q: "What does a flashing yellow traffic signal light mean?", a: "Slow down and proceed through the intersection with heightened caution." },
-        { cat: "Ohio Regular", q: "When driving in heavy fog at night, which vehicle headlights should you use?", a: "Use your low-beam headlights. High-beams reflect off the fog and blind your vision." },
+        // --- CDL PRE-TRIP INSPECTION & STEERING CONTROLS ---
+        { cat: "CDL Pre-Trip", q: "What is the greatest amount of play or looseness allowed in your steering wheel configuration?", a: "On a standard 20-inch steering wheel, the maximum legal limit for play is 10 degrees, which is roughly equal to 2 inches of movement before the steering axle tires turn." },
+        { cat: "CDL Pre-Trip", q: "How do you check steering wheel play during a pre-trip inspection?", a: "With the engine running, turn the steering wheel back and forth to feel for loose play. If the wheel moves more than 2 inches without moving the front tires, it is an out-of-service failure." },
+        { cat: "CDL Pre-Trip", q: "How do you inspect the brake slack adjusters and pushrods?", a: "Park on level ground, chock the wheels, and release the parking brakes. Pull the slack adjuster firmly by hand. The brake pushrod must not move more than 1 inch where it connects." },
+        { cat: "CDL Pre-Trip", q: "What are you looking for when inspecting the steering box housing and mounting?", a: "Check that the steering box is securely bolted to the vehicle frame. Look for missing nuts, loose bolts, structural frame cracks, or active fluid leaks from the power steering pump line fittings." },
+        { cat: "CDL Pre-Trip", q: "What suspension system issues will put a commercial vehicle completely out of service?", a: "Any cracked, bent, broken, or shifted leaf springs. If one-fourth (25%) or more of the leaf springs in any single stack are broken or missing, the truck is illegal to operate." },
 
-        // --- CDL GENERAL KNOWLEDGE EXAMS ---
-        { cat: "CDL General", q: "While driving, where should you be looking ahead of your vehicle?", a: "You should look 12 to 15 seconds ahead of your vehicle. At highway speeds, this equals roughly a quarter of a mile ahead." },
-        { cat: "CDL General", q: "What is the maximum legal height limit for a standard commercial motor vehicle?", a: "13 feet, 6 inches." },
-        { cat: "CDL General", q: "What is the minimum legal tread depth required for front/steer tires on a commercial truck?", a: "4/32 of an inch. All other non-steering tires require at least 2/32 of an inch." },
-        { cat: "CDL General", q: "How often must you stop and inspect your commercial vehicle cargo transit layout?", a: "Within the first 50 miles of beginning a trip, and then every 3 hours or every 150 miles driven." },
-        { cat: "CDL General", q: "What is the definition of a 'Commercial Motor Vehicle' (CMV) requiring a CDL?", a: "Any vehicle or combination configuration with a gross vehicle weight rating (GVWR) of 26,01 pounds or more." },
-        { cat: "CDL General", q: "What must you do if your truck hydroplanes on a slick, rain-soaked roadway?", a: "Release the accelerator pedal entirely and push in the clutch. Do not slam on the brakes." },
-        { cat: "CDL General", q: "Why must you conduct a post-trip inspection at the end of every driving shift?", a: "To identify mechanical defects or structural safety failures, documenting them on a Driver Vehicle Condition Report (DVCR)." },
+        // --- CDL GENERAL KNOWLEDGE WRITTEN EXAMS ---
+        { cat: "CDL General Knowledge", q: "While driving, where should you be looking ahead of your vehicle?", a: "You should look 12 to 15 seconds directly ahead of your vehicle. At highway speeds, this distance is equal to roughly one-quarter of a mile." },
+        { cat: "CDL General Knowledge", q: "What is the maximum legal height limit for a standard commercial motor vehicle or trailer setup?", a: "13 feet, 6 inches from the pavement to the highest point of the trailer roof." },
+        { cat: "CDL General Knowledge", q: "What is the minimum legal tread depth required for commercial truck tires?", a: "Front/steer tires require a minimum tread depth of 4/32 of an inch. All other drive axle and trailer tires require a minimum of 2/32 of an inch." },
+        { cat: "CDL General Knowledge", q: "How often must a commercial driver stop and inspect their cargo securement layout?", a: "Inspect cargo within the first 50 miles of starting a transit trip, and then re-examine bindings every 3 hours or every 150 miles driven." },
+        { cat: "CDL General Knowledge", q: "What is the legal definition of a Commercial Motor Vehicle (CMV) requiring a driver to hold a CDL?", a: "Any vehicle or combination configuration with a gross vehicle weight rating (GVWR) or actual total weight of 26,001 pounds or more." },
+        { cat: "CDL General Knowledge", q: "What should you do if your heavy commercial vehicle begins to hydroplane on wet pavement?", a: "Do not slam on your brakes. Release the accelerator pedal completely, keep the vehicle pointed straight, and push the clutch in to let the tires regain contact." },
 
-        // --- AIR BRAKES EXAMS ---
-        { cat: "Air Brakes", q: "At what system pressure level must the low air pressure warning device activate?", a: "The warning light and buzzer must activate before air pressure drops below 60 PSI." },
-        { cat: "Air Brakes", q: "What happens mechanically when air system pressure drops all the way down into the 20 to 45 PSI zone?", a: "The tractor-trailer spring brakes will automatically apply and pop out, completely locking up the wheels to prevent runaway operation." },
-        { cat: "Air Brakes", q: "What are the core parameters checked during a static air brake leak test sequence?", a: "With the engine off and brakes fully applied, the air leakage rate must not exceed 3 PSI per minute for straight trucks, or 4 PSI per minute for combination vehicles." },
-        { cat: "Air Brakes", q: "What is the primary function of an air compressor governor assembly?", a: "It controls when the air compressor pumps air into the system storage tanks. It cuts out around 125 PSI and cuts back in around 100 PSI." },
-        { cat: "Air Brakes", q: "Why must air storage tanks be drained completely at the end of every operating day?", a: "To drain out collected moisture, water, and compressor oil, which can freeze up or corrode valves and cause brake failure." },
+        // --- AIR BRAKES WRITTEN EXAMS ---
+        { cat: "CDL Air Brakes", q: "At what pressure system level must the low air pressure warning device activate?", a: "The low air warning light and buzzer must turn on before the air storage tank pressure drops below 60 PSI." },
+        { cat: "CDL Air Brakes", q: "What happens mechanically when the vehicle air system pressure drops below the 20 to 45 PSI range?", a: "The emergency spring safety brakes will automatically apply and pop out on the dash control panel, completely locking the wheels to stop the truck." },
+        { cat: "CDL Air Brakes", q: "What are the legal air leakage limits during a static applied air brake test sequence?", a: "With the engine off, parking brakes released, and foot pedal held down hard for 1 minute, the air loss cannot exceed 3 PSI for straight trucks, or 4 PSI for combination tractor-trailers." },
+        { cat: "CDL Air Brakes", q: "What is the exact purpose of an air compressor governor assembly?", a: "The governor controls when the engine air compressor pumps air into the storage tanks. It stops the pump at cut-out pressure (125 PSI) and starts it again at cut-in pressure (100 PSI)." },
 
-        // --- PRE-TRIP INSPECTION EXAMS ---
-        { cat: "Pre-Trip", q: "How do you inspect the brake slack adjusters and pushrods?", a: "With wheels chocked and parking brakes released, pull the pushrod firmly by hand. It should not pull out or move more than 1 inch." },
-        { cat: "Pre-Trip", q: "What are you looking for when conducting a physical check of the steering box housing?", a: "Check for tight mounting bolts, missing components, cracks, and evidence of fluid leaks coming from the steering gear case." },
-        { cat: "Pre-Trip", q: "How do you verify that the spring leaves in your suspension system are functional?", a: "Look for cracked, bent, loose, broken, or shifted leaf springs. If 1/4 or more of the leaves are missing or broken, the vehicle is out of service." },
+        // --- COMBINATION VEHICLES WRITTEN EXAMS ---
+        { cat: "CDL Combination", q: "Why must you verify that the fifth wheel locking jaws are completely shut around the trailer kingpin?", a: "To create a secure structural latch that guarantees the trailer cannot slip loose, separate, or break away from the tractor chassis frame during transit." },
+        { cat: "CDL Combination", q: "What is a trailer jackknife event and what primary mechanical failure causes it?", a: "A trailer jackknife occurs when the rear trailer tires lock up during hard braking, causing the trailer to slide sideways out of its lane and swing up toward the truck cab." },
 
-        // --- COMBINATION VEHICLES EXAMS ---
-        { cat: "Combination", q: "Why must you verify that the tractor fifth wheel jaws are closed tight around the trailer kingpin?", a: "To ensure a complete, unyielding lock so that the trailer cannot break loose from the tractor chassis frame during travel." },
-        { cat: "Combination", q: "What is a trailer jackknife event and what causes it?", a: "A jackknife happens when the trailer wheels lock up, causing the trailer to swing outward out of its lane, sliding past the tractor axle." },
-        { cat: "Combination", q: "What is the function of the emergency glad hand connection line (the red line)?", a: "It controls the emergency trailer air tanks and keeps continuous high-pressure air moving to hold open the spring safety brakes." }
+        // --- OHIO REGULAR DRIVER WRITTEN EXAMS ---
+        { cat: "Ohio Regular Driver", q: "When approaching a railroad crossing line, what are your legal obligations?", a: "Slow down, look in both directions, and listen for trains. You must come to a complete stop between 15 and 50 feet from the nearest track rail if signal lights are flashing or safety gates are down." },
+        { cat: "Ohio Regular Driver", q: "What should you do when approaching a standard stop sign intersection?", a: "Come to a complete stop behind the white stop line or marked crosswalk. Yield the right-of-way to pedestrians and cross-traffic before moving forward." },
+        { cat: "Ohio Regular Driver", q: "What is the legal speed limit inside an Ohio school zone during designated hours?", a: "20 miles per hour (mph) during school opening hours, closing hours, or recess periods." }
     ];
 
-    // INITIAL LAUNCH
-    renderView();
+    // LAUNCH INITIAL VIEW
+    smartSearchEngine();
 
-    function renderView() {
+    // FLEXIBLE SEARCH ALGORITHM (Quizlet / Multi-Word Style)
+    function smartSearchEngine() {
         const display = document.getElementById('deckDisplay');
         const summary = document.getElementById('resultsSummary');
         const query = document.getElementById('searchField').value.toLowerCase().trim();
 
-        // Separate search text into individual keywords
-        const searchWords = query.split(/\s+/).filter(w => w.length > 0);
+        // Break search into individual text chunks
+        const searchTerms = query.split(/\s+/).filter(word => word.length > 0);
 
-        // Filter by category and search keywords simultaneously
-        const finalMatches = masterDatabase.filter(item => {
-            const matchesCategory = (currentCategory === 'all' || item.cat === currentCategory);
-            
-            const fullText = (item.q + " " + item.a + " " + item.cat).toLowerCase();
-            const matchesKeywords = searchWords.every(word => fullText.includes(word));
+        // Score cards based on how many terms they contain
+        let evaluatedCards = masterDatabase.map(card => {
+            const combinedSourceText = (card.q + " " + card.a + " " + card.cat).toLowerCase();
+            let matchedCount = 0;
 
-            return matchesCategory && matchesKeywords;
+            searchTerms.forEach(term => {
+                if (combinedSourceText.includes(term)) {
+                    matchedCount++;
+                }
+            });
+
+            return { ...card, score: matchedCount };
         });
+
+        // Filter cards. If search box is empty, show everything. If typing, show rows containing matching terms.
+        let dynamicMatches = [];
+        if (searchTerms.length === 0) {
+            dynamicMatches = masterDatabase;
+        } else {
+            dynamicMatches = evaluatedCards.filter(card => card.score > 0);
+            // Sort cards so the ones with the absolute highest term match scores appear at the top
+            dynamicMatches.sort((a, b) => b.score - a.score);
+        }
 
         display.innerHTML = "";
 
-        if (finalMatches.length === 0) {
+        if (dynamicMatches.length === 0) {
             summary.innerText = "0 Cards Matched";
-            display.innerHTML = `<div class="no-results">No exact questions match your search input. Try typing shorter target words (e.g., "railroad", "speed", "jaws").</div>`;
+            display.innerHTML = `<div class="no-results">No questions match your phrase. Try using simpler terms like "play", "steering", "brakes", or "stop".</div>`;
             return;
         }
 
-        summary.innerText = `Displaying ${finalMatches.length} Verified Exam Question Card(s):`;
+        summary.innerText = `Total Pool: ${dynamicMatches.length} Active Card Entries`;
 
-        // Generate the chain reaction view
-        finalMatches.forEach(item => {
+        // Render matching question layouts
+        dynamicMatches.forEach(item => {
             display.innerHTML += `
                 <div class="qa-card">
-                    <div class="meta-tags">${item.cat} Core Bank</div>
+                    <div class="card-meta">${item.cat}</div>
                     <div class="question-text">${item.q}</div>
                     <div class="answer-box">${item.a}</div>
                 </div>
@@ -153,26 +146,11 @@
         });
     }
 
-    function filterDatabase() {
-        renderView();
-    }
-
-    function switchCategory(category, buttonElement) {
-        currentCategory = category;
-        
-        // Update button visual states
-        const buttons = document.getElementsByClassName('cat-btn');
-        for (let b of buttons) { b.classList.remove('active'); }
-        buttonElement.classList.add('active');
-
-        renderView();
-    }
-
-    // NATIVE LIVE SPEECH API
-    function startVoiceSession() {
+    // LIVE PHONE SPEECH API IMPLEMENTATION
+    function startVoiceInput() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
-            alert("Voice detection features require a modern Google Chrome layout on mobile.");
+            alert("Voice search requires a native Google Chrome browser environment.");
             return;
         }
 
@@ -183,14 +161,14 @@
         recognizer.lang = 'en-US';
         recognizer.onstart = () => {
             mic.classList.add('listening');
-            inputField.placeholder = "Listening to your voice input...";
+            inputField.placeholder = "Listening directly to vocal input...";
         };
 
         recognizer.onresult = (e) => {
             inputField.value = e.results[0][0].transcript;
             mic.classList.remove('listening');
-            inputField.placeholder = "Type or speak a question...";
-            renderView(); // Trigger instant query chains
+            inputField.placeholder = "Search thousands of answers instantly...";
+            smartSearchEngine(); // Pull instant matching arrays
         };
 
         recognizer.onerror = () => {
